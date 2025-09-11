@@ -62,7 +62,7 @@ List<CategoriesDetails> placeList = [
     categories: [categories[1]],
   ),
   CategoriesDetails(
-    imageUrl: "assets/images/market.jpg",
+    imageUrl: "assets/images/market.jpeg",
     title: "Marcher publique",
     categories: [categories[1]],
   ),
@@ -98,13 +98,13 @@ List<CategoriesDetails> foodList = [
 
 List<CategoriesDetails> cultureList = [
   CategoriesDetails(
-    imageUrl: "assets/images/vodun.png",
+    imageUrl: "assets/images/vodun.jpeg",
     title: "Vodun",
     categories: [categories[3]],
   ),
   CategoriesDetails(
-    imageUrl: "assets/images/cultyreTogo.jpg",
-    title: "Journee culturel",
+    imageUrl: "assets/images/cultureTogo.jpg",
+    title: "Journee culture",
     categories: [categories[3]],
   ),
   CategoriesDetails(

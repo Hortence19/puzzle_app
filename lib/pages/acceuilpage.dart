@@ -1,8 +1,26 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'categorie_puzzle.dart';
 
-class Accueilpage extends StatelessWidget {
-  const Accueilpage({super.key});
+class AccueilPage extends StatefulWidget {
+  const AccueilPage({super.key});
+
+  @override
+  State<AccueilPage> createState() => _AccueilPageState();
+}
+
+class _AccueilPageState extends State<AccueilPage> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(const Duration(seconds: 10), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const CategoriePuzzle()),
+      );
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,31 +37,33 @@ class Accueilpage extends StatelessWidget {
         height: double.infinity,
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF003366), Color(0xFF0066CC)],
+            colors: [Color(0xFF003366), Color(0xFF0066CC), Color(0xFF00CCFF)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
         child: SafeArea(
-          //
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Image.asset(
                 "assets/images/Logo.png",
-                width: 150,
-                height: 150,
+                width: 200,
+                height: 200,
                 fit: BoxFit.contain,
               ),
-              const SizedBox(height: 20),
               const Text(
-                "AfricaWorld",
+                "Africa World",
                 style: TextStyle(
                   color: Colors.white,
-                  fontSize: 28,
+                  fontSize: 48,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 1.5,
                 ),
+              ),
+              const SizedBox(height: 20),
+              const CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
               ),
             ],
           ),
