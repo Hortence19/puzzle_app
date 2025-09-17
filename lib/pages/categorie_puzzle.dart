@@ -9,32 +9,36 @@ class CategoriePuzzle extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFFEAF2FF),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
+      body: Container(
+        padding: const EdgeInsets.all(20),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Image.asset('assets/images/Logo.png', height: 80, width: 80),
+                Image.asset('assets/images/Logo.png', height: 97, width: 97),
                 const SizedBox(width: 10),
                 const Expanded(
                   child: Text(
                     "AfricaWorld",
                     style: TextStyle(
+                      fontFamily: "Alumni_Sans_SC",
                       color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 37,
+                      /* 
+                      fontWeight: FontWeight.bold, */
+                      fontSize: 45,
                     ),
                   ),
                 ),
               ],
             ),
 
+            const SizedBox(height: 20),
             // Liste dynamique
             Expanded(
               child: ListView.builder(
+                padding: EdgeInsets.zero,
                 itemCount: categories.length,
                 itemBuilder: (context, index) {
                   final categorie = categories[index];
@@ -55,13 +59,10 @@ class CategoriePuzzle extends StatelessWidget {
               ),
             ),
 
-            const Padding(
-              padding: EdgeInsets.only(bottom: 2.0, top: 16),
-              child: Center(
-                child: Text(
-                  "Réal. Ecole229, Coh4",
-                  style: TextStyle(fontSize: 12, color: Colors.black54),
-                ),
+            Center(
+              child: Text(
+                "Réal. Ecole229, Coh4",
+                style: TextStyle(fontSize: 12, color: Colors.black54),
               ),
             ),
           ],

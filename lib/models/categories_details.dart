@@ -118,8 +118,8 @@ List<CategoriesDetails> cultureList = [
     categories: [categories[3]],
   ),
   CategoriesDetails(
-    imageUrl: "assets/images/journeyNG.png",
-    title: "Journee culturel",
+    imageUrl: "assets/images/durbar festival.jpeg",
+    title: "Festivale durbar",
     categories: [categories[3]],
   ),
 ];

@@ -26,7 +26,7 @@ class CategorieDetailPage extends StatelessWidget {
       appBar: AppBar(title: Text(categorie.title)),
       body: ListView.builder(
         padding: const EdgeInsets.all(12),
-        itemCount: 80,
+        itemCount: details.length,
         itemBuilder: (context, index) {
           final item = details[index];
           return InkWell(
@@ -36,25 +36,44 @@ class CategorieDetailPage extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => PuzzlePage(item: item)),
               );
             },
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: ListTile(
-                leading: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(
-                    item.imageUrl,
-                    width: 60,
-                    height: 60,
-                    fit: BoxFit.cover,
+            child: Container(
+              margin: EdgeInsets.only(bottom: 10),
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Row(
+                    children: [
+                      // Image à gauche
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: Image.asset(
+                          item.imageUrl,
+                          width: 100,
+                          height: 60,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const SizedBox(width: 16),
+
+                      // Texte
+                      Expanded(
+                        child: Text(
+                          item.title,
+                          style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+
+                      // Icône à droite
+                      const Icon(Icons.arrow_forward),
+                    ],
                   ),
                 ),
-                title: Text(
-                  item.title,
-                  style: const TextStyle(fontWeight: FontWeight.bold),
-                ),
-                trailing: const Icon(Icons.arrow_forward_ios),
               ),
             ),
           );
@@ -63,3 +82,5 @@ class CategorieDetailPage extends StatelessWidget {
     );
   }
 }
+
+
