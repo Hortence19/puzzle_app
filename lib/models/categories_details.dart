@@ -132,13 +132,12 @@ List<CategoriesDetails> foodList = [
 
 
 List<CategoriesDetails> cultureList = [
-  CategoriesDetails(
-    imageUrl: "assets/images/vodun.jpeg",
-    title: "Vodun",
-    categories: [categories[3]],
-    description:
-        "Célébration du Vodun, une fête traditionnelle et spirituelle originaire du Bénin.",
-  ),
+ CategoriesDetails(
+  imageUrl: "assets/images/benincult.webp",
+  title: "Trône",
+  categories: [categories[3]],
+  description: "Trône du roi Ghézo, emblème du pouvoir royal dahoméen.",
+),
   CategoriesDetails(
     imageUrl: "assets/images/cultureTogo.jpg",
     title: "Journée culturelle",

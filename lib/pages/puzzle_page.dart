@@ -98,14 +98,17 @@ class _PuzzlePageState extends State<PuzzlePage> {
   }
 
   // fonction pour recommencer le jeu
-  void _restartGame() {
-    _timer?.cancel();
+void _restartGame() {
+  _timer?.cancel();
+  setState(() {
     _isTimerRunning = false;
     _isGameOver = false;
     _timeLeft = 60;
     _isBlinking = false;
+    isSolved = false;
     _shufflePieces();
-  }
+  });
+}
 
   // fonction pour Charger l’image et la convertir en ui.Image
   Future<void> _loadAndSplitImage() async {
@@ -230,59 +233,67 @@ class _PuzzlePageState extends State<PuzzlePage> {
       showDialog(
         context: context,
         builder: (BuildContext context) {
-          return Container(
-            width: 200,
-            height: 100,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                BoxShadow(
-                  // ignore: deprecated_member_use
-                  color: Colors.grey.withOpacity(0.5),
-                  spreadRadius: 3,
-                  blurRadius: 7,
-                  offset: Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Text("Félicitation puzzle résolu", style: TextStyle(fontSize: 15)),
-                Text("Le ${widget.item.title} ${widget.item.description}"),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: currentIndex > 0 ? _previousGame : null,
-                      icon: Icon(
-                        Icons.arrow_back,
-                        color: currentIndex > 0 ? Colors.blue : Colors.grey,
+          return Center(
+            child: Container(
+              padding: EdgeInsets.all(15),
+              width: 300,
+              //height: 100,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+                boxShadow: [
+                  BoxShadow(
+                    // ignore: deprecated_member_use
+                    color: Colors.grey.withOpacity(0.5),
+                    spreadRadius: 3,
+                    blurRadius: 7,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Text("Félicitation puzzle résolu", 
+                  style: TextStyle(fontSize: 15, decoration: TextDecoration.none, color: Colors.black ),
+                  textAlign: TextAlign.center,
+                  ),
+                  SizedBox(height: 10),
+                  Text("Le ${widget.item.title} ${widget.item.description}", style: TextStyle(fontSize: 12,color: Colors.black, decoration: TextDecoration.none), textAlign: TextAlign.center,),
+                  SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      IconButton(
+                        onPressed: currentIndex > 0 ? _previousGame : null,
+                        icon: Icon(
+                          Icons.arrow_back,
+                          color: currentIndex > 0 ? Colors.blue : Colors.grey,
+                        ),
                       ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-                        Navigator.of(context).pop(); 
-                        _restartGame();
-                      },
-                      icon: const Icon(Icons.replay),
-                    ),
-                    IconButton(
-                      onPressed: currentIndex < currentList.length - 1
-                          ? _nextGame
-                          : null,
-                      icon: Icon(
-                        Icons.arrow_forward,
-                        color: currentIndex < currentList.length - 1
-                            ? Colors.blue
-                            : Colors.grey,
+                      IconButton(
+                        onPressed: () {
+                            Navigator.of(context).pop();
+                            _restartGame(); 
+                        },
+                        icon: const Icon(Icons.replay),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      IconButton(
+                        onPressed: currentIndex < currentList.length - 1
+                            ? _nextGame
+                            : null,
+                        icon: Icon(
+                          Icons.arrow_forward,
+                          color: currentIndex < currentList.length - 1
+                              ? Colors.blue
+                              : Colors.grey,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           );
         },
@@ -334,19 +345,14 @@ class _PuzzlePageState extends State<PuzzlePage> {
                       children: [
                         GestureDetector(
                           onTap: _showFullImageDialog,
-                          child: Container(
-                            alignment: Alignment.center,
-                            width: 80,
-                            height: 80,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(13),
-                              color: Colors.white,
-                            ),
-                            child: Icon(
-                              Icons.image,
-                              size: 30,
-                            ) /* Text("Image", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20 ),), */,
+                          child: SizedBox(
+                          width: 90,
+                          height: 70,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(13),
+                            child: Image.asset(myimage, fit: BoxFit.cover),
                           ),
+                                                    ),
                           /* SizedBox(
                             width: 80,
                             height: 80,
@@ -391,8 +397,8 @@ class _PuzzlePageState extends State<PuzzlePage> {
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 3,
-                              crossAxisSpacing: 5.0, // Espace réduit
-                              mainAxisSpacing: 5.0, // Espace réduit
+                              crossAxisSpacing: 2.0, // Espace réduit
+                              mainAxisSpacing: 2.0, // Espace réduit
                             ),
                         itemBuilder: (context, index) {
                           final pieceIndex = puzzlePieces[index];
@@ -403,7 +409,6 @@ class _PuzzlePageState extends State<PuzzlePage> {
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
                                     color: Colors.black,
-                                    width: 2,
                                   ),
                                   color: Colors.grey.shade200,
                                 ),
@@ -419,17 +424,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
                     const SizedBox(height: 10),
 
                     // affichage du message de résutat
-                    if (isSolved) ...[
-                      const Text(
-                        'Félicitation!! Puzzle Résolu',
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.green,
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                    ] else if (_isGameOver) ...[
+                  if (_isGameOver) ...[
                       const Text(
                         'Temps écoulé ! Game Over.',
                         style: TextStyle(
@@ -439,27 +434,6 @@ class _PuzzlePageState extends State<PuzzlePage> {
                         ),
                       ),
                     ],
-                    const SizedBox(height: 19),
-
-                    // affichage du bouton recommencer
-                    if (isSolved || _isGameOver)
-                      ElevatedButton(
-                        onPressed: () => setState(() {
-                          _restartGame();
-                        }),
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red.shade600,
-                          foregroundColor: Colors.white,
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 20,
-                            vertical: 15,
-                          ),
-                        ),
-                        child: const Text(
-                          'Recommencer la partie',
-                          style: TextStyle(fontSize: 16),
-                        ),
-                      ),
                   ],
                 ),
               ),
