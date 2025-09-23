@@ -10,6 +10,8 @@ import 'package:puzzle_app/models/categories_details.dart';
 class PuzzlePage extends StatefulWidget {
   final CategoriesDetails item;
 
+  //final List<CategoriesDetails> CategoriesDetails;
+
   const PuzzlePage({super.key, required this.item});
 
   @override
@@ -17,6 +19,8 @@ class PuzzlePage extends StatefulWidget {
 }
 
 class _PuzzlePageState extends State<PuzzlePage> {
+  List<CategoriesDetails> currentList = [];
+  int currentIndex = 0;
   // Liste des pièces du puzzle, de 0 à 8
   List<int> puzzlePieces = List.generate(9, (index) => index);
   bool isSolved = false;
@@ -41,7 +45,31 @@ class _PuzzlePageState extends State<PuzzlePage> {
   void initState() {
     super.initState();
     myimage = widget.item.imageUrl;
+
+    // Déterminer la liste actuelle et l'index
+    _initializeCurrentListAndIndex();
+
     _loadAndSplitImage();
+  }
+
+  void _initializeCurrentListAndIndex() {
+    // Déterminer quelle liste contient l'item actuel
+    if (flagList.contains(widget.item)) {
+      currentList = flagList;
+    } else if (placeList.contains(widget.item)) {
+      currentList = placeList;
+    } else if (foodList.contains(widget.item)) {
+      currentList = foodList;
+    } else if (cultureList.contains(widget.item)) {
+      currentList = cultureList;
+    }
+
+    // Trouver l'index de l'item actuel
+    currentIndex = currentList.indexWhere(
+      (item) =>
+          item.title == widget.item.title &&
+          item.imageUrl == widget.item.imageUrl,
+    );
   }
 
   // démarrage et clignotement du timer
@@ -143,6 +171,46 @@ class _PuzzlePageState extends State<PuzzlePage> {
       _checkWinCondition();
     });
   }
+  // Fonction pour aller au puzzle préccedent
+  void _previousGame() {
+    if (currentIndex > 0) {
+      // Il y a un puzzle précédent
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PuzzlePage(item: currentList[currentIndex - 1]),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Vous êtes déjà au premier puzzle !'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      Navigator.of(context).pop(); 
+    }
+  }
+
+  void _nextGame() {
+    if (currentIndex < currentList.length - 1) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => PuzzlePage(item: currentList[currentIndex + 1]),
+        ),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Vous êtes déjà au dernier puzzle !'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      Navigator.of(context).pop(); 
+    }
+  }
+
 
   // fonction pour vérifier si le jeu est gagné
   void _checkWinCondition() {
@@ -158,12 +226,75 @@ class _PuzzlePageState extends State<PuzzlePage> {
     });
     if (isSolved) {
       _timer?.cancel();
-      ScaffoldMessenger.of(context).showSnackBar(
+
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return Container(
+            width: 200,
+            height: 100,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                BoxShadow(
+                  // ignore: deprecated_member_use
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 3,
+                  blurRadius: 7,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text("Félicitation puzzle résolu", style: TextStyle(fontSize: 15)),
+                Text("Le ${widget.item.title} ${widget.item.description}"),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: currentIndex > 0 ? _previousGame : null,
+                      icon: Icon(
+                        Icons.arrow_back,
+                        color: currentIndex > 0 ? Colors.blue : Colors.grey,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.of(context).pop(); 
+                        _restartGame();
+                      },
+                      icon: const Icon(Icons.replay),
+                    ),
+                    IconButton(
+                      onPressed: currentIndex < currentList.length - 1
+                          ? _nextGame
+                          : null,
+                      icon: Icon(
+                        Icons.arrow_forward,
+                        color: currentIndex < currentList.length - 1
+                            ? Colors.blue
+                            : Colors.grey,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          );
+        },
+      );
+
+      /*       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Félicitations ! Vous avez résolu le puzzle !'),
           duration: Duration(seconds: 3),
         ),
       );
+ */
     }
   }
 
@@ -211,8 +342,11 @@ class _PuzzlePageState extends State<PuzzlePage> {
                               borderRadius: BorderRadius.circular(13),
                               color: Colors.white,
                             ),
-                            child: Icon(  Icons.image,size: 30,)/* Text("Image", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20 ),), */
-                          )
+                            child: Icon(
+                              Icons.image,
+                              size: 30,
+                            ) /* Text("Image", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20 ),), */,
+                          ),
                           /* SizedBox(
                             width: 80,
                             height: 80,
@@ -229,7 +363,7 @@ class _PuzzlePageState extends State<PuzzlePage> {
                             style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: _timeLeft <= 10 && _isBlinking 
+                              color: _timeLeft <= 10 && _isBlinking
                                   ? Colors.red
                                   : Colors.black,
                             ),
@@ -246,9 +380,9 @@ class _PuzzlePageState extends State<PuzzlePage> {
                       padding: EdgeInsets.all(9),
                       decoration: BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.circular(10)
+                        borderRadius: BorderRadius.circular(10),
                       ),
-                      
+
                       child: GridView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
