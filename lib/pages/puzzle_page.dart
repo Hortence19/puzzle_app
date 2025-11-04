@@ -78,8 +78,9 @@ class _PuzzlePageState extends State<PuzzlePage> {
       return;
     }
     _isTimerRunning = true;
-    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+    /* _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
       if (_timeLeft > 0) {
+        if(mounted){}
         setState(() {
           _timeLeft--;
           if (_timeLeft <= 10) {
@@ -94,21 +95,41 @@ class _PuzzlePageState extends State<PuzzlePage> {
         _timer?.cancel();
         // Optional: show a Game Over dialog
       }
+    }); */
+    _timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (_timeLeft > 0) {
+        if (mounted) {
+          setState(() {
+            _timeLeft--;
+            if (_timeLeft <= 10) {
+              _isBlinking = !_isBlinking;
+            }
+          });
+        }
+      } else {
+        if (mounted) {
+          setState(() {
+            _isGameOver = true;
+            _isTimerRunning = false;
+          });
+        }
+        _timer?.cancel();
+      }
     });
   }
 
   // fonction pour recommencer le jeu
-void _restartGame() {
-  _timer?.cancel();
-  setState(() {
-    _isTimerRunning = false;
-    _isGameOver = false;
-    _timeLeft = 60;
-    _isBlinking = false;
-    isSolved = false;
-    _shufflePieces();
-  });
-}
+  void _restartGame() {
+    _timer?.cancel();
+    setState(() {
+      _isTimerRunning = false;
+      _isGameOver = false;
+      _timeLeft = 60;
+      _isBlinking = false;
+      isSolved = false;
+      _shufflePieces();
+    });
+  }
 
   // fonction pour Charger l’image et la convertir en ui.Image
   Future<void> _loadAndSplitImage() async {
@@ -141,10 +162,12 @@ void _restartGame() {
 
     //Après 500 ms on mélange les pièces (_shufflePieces) et on met isImageLoading = false pour enlever le loader.
     Future.delayed(const Duration(milliseconds: 500), () {
-      setState(() {
-        _shufflePieces();
-        isImageLoading = false;
-      });
+      if (mounted) {
+        setState(() {
+          _shufflePieces();
+          isImageLoading = false;
+        });
+      }
     });
   }
 
@@ -174,6 +197,7 @@ void _restartGame() {
       _checkWinCondition();
     });
   }
+
   // Fonction pour aller au puzzle préccedent
   void _previousGame() {
     if (currentIndex > 0) {
@@ -191,7 +215,7 @@ void _restartGame() {
           duration: Duration(seconds: 2),
         ),
       );
-      Navigator.of(context).pop(); 
+      Navigator.of(context).pop();
     }
   }
 
@@ -210,10 +234,9 @@ void _restartGame() {
           duration: Duration(seconds: 2),
         ),
       );
-      Navigator.of(context).pop(); 
+      Navigator.of(context).pop();
     }
   }
-
 
   // fonction pour vérifier si le jeu est gagné
   void _checkWinCondition() {
@@ -224,9 +247,11 @@ void _restartGame() {
         break;
       }
     }
-    setState(() {
-      isSolved = solved;
-    });
+    if (mounted) {
+      setState(() {
+        isSolved = solved;
+      });
+    }
     if (isSolved) {
       _timer?.cancel();
 
@@ -255,12 +280,25 @@ void _restartGame() {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Text("Félicitation puzzle résolu", 
-                  style: TextStyle(fontSize: 15, decoration: TextDecoration.none, color: Colors.black ),
-                  textAlign: TextAlign.center,
+                  Text(
+                    "Félicitation puzzle résolu",
+                    style: TextStyle(
+                      fontSize: 15,
+                      decoration: TextDecoration.none,
+                      color: Colors.black,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 10),
-                  Text("Le ${widget.item.title} ${widget.item.description}", style: TextStyle(fontSize: 12,color: Colors.black, decoration: TextDecoration.none), textAlign: TextAlign.center,),
+                  Text(
+                    "Le ${widget.item.title} ${widget.item.description}",
+                    style: TextStyle(
+                      fontSize: 12,
+                      color: Colors.black,
+                      decoration: TextDecoration.none,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
                   SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -274,8 +312,8 @@ void _restartGame() {
                       ),
                       IconButton(
                         onPressed: () {
-                            Navigator.of(context).pop();
-                            _restartGame(); 
+                          Navigator.of(context).pop();
+                          _restartGame();
                         },
                         icon: const Icon(Icons.replay),
                       ),
@@ -321,6 +359,12 @@ void _restartGame() {
   }
 
   @override
+  void dispose() {
+    _timer?.cancel(); // annule le timer
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFDBEEFF),
@@ -346,13 +390,13 @@ void _restartGame() {
                         GestureDetector(
                           onTap: _showFullImageDialog,
                           child: SizedBox(
-                          width: 90,
-                          height: 70,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(13),
-                            child: Image.asset(myimage, fit: BoxFit.cover),
+                            width: 90,
+                            height: 70,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(13),
+                              child: Image.asset(myimage, fit: BoxFit.cover),
+                            ),
                           ),
-                                                    ),
                           /* SizedBox(
                             width: 80,
                             height: 80,
@@ -407,9 +451,7 @@ void _restartGame() {
                               return Container(
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
-                                  border: Border.all(
-                                    color: Colors.black,
-                                  ),
+                                  border: Border.all(color: Colors.black),
                                   color: Colors.grey.shade200,
                                 ),
                                 child: buildPuzzlePiece(pieceIndex),
@@ -424,7 +466,7 @@ void _restartGame() {
                     const SizedBox(height: 10),
 
                     // affichage du message de résutat
-                  if (_isGameOver) ...[
+                    if (_isGameOver) ...[
                       const Text(
                         'Temps écoulé ! Game Over.',
                         style: TextStyle(
