@@ -12,5 +12,4 @@ List<Categories> categories = [
   Categories(icon: Icons.image, title: "Places Publiques"),
   Categories(icon: Icons.dining_outlined, title: "Repas du pays"),
   Categories(icon: Icons.image, title: "Cultures & Traditions"),
-  Categories(icon: Icons.image, title: "Special Afrique"),
 ];

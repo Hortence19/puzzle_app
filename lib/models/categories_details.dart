@@ -358,10 +358,114 @@ List<CategoriesDetails> foodList = [
     title: "Attiéké",
     categories: [categories[2]],
     description:
-        "Met ivoirien proche de l’attiéké, accompagné de poisson frit et d’une salade de crudités.",
+        "Met ivoirien à base de semoule de manioc fermenté, accompagné de poisson frit et de crudités.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/jollof.jpg",
+    title: "Jollof Rice",
+    categories: [categories[2]],
+    description:
+        "Plat populaire d’Afrique de l’Ouest, à base de riz cuisiné dans une sauce tomate épicée, servi avec viande ou poisson.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/thieboudienne.jpg",
+    title: "Thiéboudiène",
+    categories: [categories[2]],
+    description:
+        "Plat national du Sénégal, composé de riz, de poisson et de légumes mijotés dans une sauce tomate parfumée.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/foutou.jpg",
+    title: "Foutou",
+    categories: [categories[2]],
+    description:
+        "Spécialité ivoirienne à base de banane plantain ou d’igname pilée, servie avec une sauce riche.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/tô.jpg",
+    title: "Tô",
+    categories: [categories[2]],
+    description:
+        "Plat burkinabè et malien à base de pâte de mil ou de maïs, accompagné de sauces variées.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/egusi.jpg",
+    title: "Soupe Egusi",
+    categories: [categories[2]],
+    description:
+        "Soupe nigériane préparée avec des graines de melon moulues, des légumes et de la viande.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/ndole.jpg",
+    title: "Ndolé",
+    categories: [categories[2]],
+    description:
+        "Plat camerounais à base de feuilles amères, d’arachides et de viande ou crevettes.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/ugali.jpg",
+    title: "Ugali",
+    categories: [categories[2]],
+    description:
+        "Plat de base en Afrique de l’Est, fait de farine de maïs cuite, servi avec légumes, viande ou poisson.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/injera.jpg",
+    title: "Injera",
+    categories: [categories[2]],
+    description:
+        "Galette éthiopienne à base de teff, utilisée comme pain et assiette pour divers ragoûts.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/bobotie.jpg",
+    title: "Bobotie",
+    categories: [categories[2]],
+    description:
+        "Plat sud-africain composé de viande hachée épicée, recouverte d’un mélange d’œufs et de lait, puis gratinée.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/bunnychow.jpg",
+    title: "Bunny Chow",
+    categories: [categories[2]],
+    description:
+        "Street food sud-africaine : pain évidé garni de curry épicé, d’origine indienne.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/matoke.jpg",
+    title: "Matoke",
+    categories: [categories[2]],
+    description:
+        "Plat ougandais à base de bananes plantains cuites à la vapeur et servies avec une sauce.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/kapenta.jpg",
+    title: "Kapenta",
+    categories: [categories[2]],
+    description:
+        "Poissons séchés ou frits, très populaires en Zambie et au Zimbabwe, servis avec du sadza ou nshima.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/mafe.jpg",
+    title: "Mafé",
+    categories: [categories[2]],
+    description:
+        "Ragoût ouest-africain à base de pâte d’arachide, de viande et de légumes.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/yassa.jpg",
+    title: "Poulet Yassa",
+    categories: [categories[2]],
+    description:
+        "Spécialité sénégalaise de poulet mariné au citron et aux oignons, servi avec du riz.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/romazava.jpg",
+    title: "Romazava",
+    categories: [categories[2]],
+    description:
+        "Plat national de Madagascar, composé de viande, de brèdes et de bouillon parfumé.",
   ),
 ];
-
 List<CategoriesDetails> cultureList = [
   CategoriesDetails(
     imageUrl: "assets/images/benincult.webp",
@@ -396,5 +500,110 @@ List<CategoriesDetails> cultureList = [
     categories: [categories[3]],
     description:
         "Grande parade équestre et traditionnelle du Nigeria, marquée par faste et couleurs.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/fespaco.jpg",
+    title: "FESPACO",
+    categories: [categories[3]],
+    description:
+        "Festival panafricain du cinéma et de la télévision de Ouagadougou, au Burkina Faso, vitrine du 7e art africain.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/festivalmask.jpg",
+    title: "Festival des Masques",
+    categories: [categories[3]],
+    description:
+        "Célébration traditionnelle en Côte d’Ivoire mettant en avant les masques sacrés et les danses rituelles.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/kora.jpg",
+    title: "Musique de la Kora",
+    categories: [categories[3]],
+    description:
+        "Instrument emblématique d’Afrique de l’Ouest, la kora accompagne griots et conteurs dans leurs récits.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/dansezulu.jpg",
+    title: "Danse Zoulou",
+    categories: [categories[3]],
+    description:
+        "Danse traditionnelle d’Afrique du Sud, marquée par des mouvements énergiques et des chants guerriers.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/coffeeethiopia.jpg",
+    title: "Cérémonie du café",
+    categories: [categories[3]],
+    description:
+        "Rituel social et culturel éthiopien, symbole d’hospitalité et de convivialité.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/gnawa.jpg",
+    title: "Musique Gnawa",
+    categories: [categories[3]],
+    description:
+        "Tradition spirituelle et musicale du Maroc, mêlant chants, danses et instruments comme le guembri.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/timbuktu.jpg",
+    title: "Manuscrits de Tombouctou",
+    categories: [categories[3]],
+    description:
+        "Trésors historiques du Mali, témoins de l’âge d’or intellectuel et spirituel de l’Afrique médiévale.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/sabar.jpg",
+    title: "Danse Sabar",
+    categories: [categories[3]],
+    description:
+        "Danse traditionnelle sénégalaise accompagnée de percussions, symbole de fête et de communion.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/voodoo.jpg",
+    title: "Festival du Vodoun",
+    categories: [categories[3]],
+    description:
+        "Célébration annuelle au Bénin, mettant en avant les rites et pratiques du culte vodoun.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/eritrea.jpg",
+    title: "Danse Tigrigna",
+    categories: [categories[3]],
+    description:
+        "Danse traditionnelle d’Érythrée, exécutée en cercle avec des pas rythmés et des chants.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/masai.jpg",
+    title: "Rites Massaï",
+    categories: [categories[3]],
+    description:
+        "Cérémonies initiatiques et danses des Massaï au Kenya et en Tanzanie, symboles d’identité et de bravoure.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/mbira.jpg",
+    title: "Musique Mbira",
+    categories: [categories[3]],
+    description:
+        "Instrument traditionnel du Zimbabwe, aussi appelé piano à pouces, utilisé dans les rituels et fêtes.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/baobab.jpg",
+    title: "Contes sous le Baobab",
+    categories: [categories[3]],
+    description:
+        "Tradition orale africaine où les anciens transmettent savoirs et légendes à l’ombre du baobab.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/ndebele.jpg",
+    title: "Art Ndebele",
+    categories: [categories[3]],
+    description:
+        "Peintures murales colorées et motifs géométriques des maisons Ndebele en Afrique du Sud et au Zimbabwe.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/masquesdogon.jpg",
+    title: "Masques Dogon",
+    categories: [categories[3]],
+    description:
+        "Masques rituels du peuple Dogon au Mali, utilisés lors des cérémonies funéraires et initiatiques.",
   ),
 ];
