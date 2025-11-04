@@ -190,7 +190,7 @@ List<CategoriesDetails> placeList = [
   ),
   CategoriesDetails(
     imageUrl: "assets/images/independance.jpg",
-    title: "Place de l'indépendance",
+    title: "Place de l’Indépendance",
     categories: [categories[1]],
     description:
         "La Place de l’Indépendance, érigée à Lomé au Togo, commémore l’indépendance du pays.",
@@ -216,8 +216,114 @@ List<CategoriesDetails> placeList = [
     description:
         "La statue de Kwame Nkrumah se trouve dans le parc mémorial qui porte son nom, à Accra, au Ghana.",
   ),
-];
+  CategoriesDetails(
+    imageUrl: "assets/images/obelisque.jpg",
+    title: "Obélisque des Indépendances",
+    categories: [categories[1]],
+    description:
+        "L’Obélisque des Indépendances, situé à Dakar au Sénégal, est un monument commémoratif de la liberté et de l’unité nationale.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/hippodrome.jpg",
+    title: "Place de l’Hippodrome",
+    categories: [categories[1]],
+    description:
+        "La Place de l’Hippodrome, à Bamako au Mali, est un lieu central de rassemblement et de mémoire nationale.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/felixhouphouet.jpg",
+    title: "Statue de Félix Houphouët-Boigny",
+    categories: [categories[1]],
+    description:
+        "La statue de Félix Houphouët-Boigny, père de l’indépendance ivoirienne, se trouve à Yamoussoukro, en Côte d’Ivoire.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/sankarasankara.jpg",
+    title: "Statue de Thomas Sankara",
+    categories: [categories[1]],
+    description:
+        "La statue de Thomas Sankara, figure révolutionnaire du Burkina Faso, est érigée à Ouagadougou.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/nelsonmandela.jpg",
+    title: "Statue de Nelson Mandela",
+    categories: [categories[1]],
+    description:
+        "La statue de Nelson Mandela, symbole de lutte contre l’apartheid, se trouve à Pretoria, en Afrique du Sud.",
+  ),
 
+  // --- Ajouts complémentaires ---
+  CategoriesDetails(
+    imageUrl: "assets/images/namugongo.jpeg",
+    title: "Sanctuaire des Martyrs de Namugongo",
+    categories: [categories[1]],
+    description:
+        "Situé près de Kampala, en Ouganda, ce sanctuaire commémore les martyrs chrétiens exécutés au XIXe siècle.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/addis_abeba.jpg",
+    title: "Place Meskel",
+    categories: [categories[1]],
+    description:
+        "La Place Meskel, à Addis-Abeba en Éthiopie, est un lieu central pour les rassemblements et les célébrations nationales.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/khartoum.jpg",
+    title: "Place Al-Mogran",
+    categories: [categories[1]],
+    description:
+        "Située à Khartoum, au Soudan, cette place est un point de rencontre symbolique au confluent du Nil Bleu et du Nil Blanc.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/casablanca.jpg",
+    title: "Place Mohammed V",
+    categories: [categories[1]],
+    description:
+        "La Place Mohammed V, au cœur de Casablanca au Maroc, est un centre administratif et culturel majeur.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/tunis.jpg",
+    title: "Place du 14 Janvier",
+    categories: [categories[1]],
+    description:
+        "Située à Tunis, en Tunisie, la Place du 14 Janvier commémore la révolution tunisienne de 2011.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/alger.jpg",
+    title: "Place des Martyrs",
+    categories: [categories[1]],
+    description:
+        "La Place des Martyrs, à Alger en Algérie, est un lieu historique et symbolique de la mémoire nationale.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/egypte.jpg",
+    title: "Place Tahrir",
+    categories: [categories[1]],
+    description:
+        "La Place Tahrir, au Caire en Égypte, est un symbole de liberté et de mobilisation populaire.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/luanda.jpg",
+    title: "Place de l’Indépendance de Luanda",
+    categories: [categories[1]],
+    description:
+        "Située à Luanda, en Angola, cette place rend hommage à l’indépendance du pays en 1975.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/maputo.jpg",
+    title: "Place de l’Indépendance de Maputo",
+    categories: [categories[1]],
+    description:
+        "La Place de l’Indépendance, au centre de Maputo au Mozambique, est dominée par la statue de Samora Machel.",
+  ),
+  CategoriesDetails(
+    imageUrl: "assets/images/antananarivo.jpg",
+    title: "Place de l’Indépendance d’Antananarivo",
+    categories: [categories[1]],
+    description:
+        "La Place de l’Indépendance, située à Antananarivo à Madagascar, est un lieu emblématique de rassemblement populaire.",
+  ),
+];
 List<CategoriesDetails> foodList = [
   CategoriesDetails(
     imageUrl: "assets/images/telibo.jpg",
